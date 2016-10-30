@@ -14,26 +14,19 @@ public class Main {
 		System.out.println("2)-Listen udp");
 		System.out.println("3)-Print localIP");
 		System.out.println("4)-Usage example");
-		Scanner t=new Scanner(System.in);
-		String response=t.nextLine();
+		System.out.println("5)-Quit");
+		String response=new Scanner(System.in).nextLine();
 		parse(response);
 	}
 
 	
 	private static void askAgain(){
-		Scanner te=new Scanner(System.in);
-		System.out.println("Action performed, do you want to quit?(Yes/No)");
-		String res=te.nextLine();
-		res=res.trim();
-		if(res.equalsIgnoreCase("no"))
-			askAction();
-		else if(!res.equalsIgnoreCase("yes")){
-			System.out.println("Sorry I didn´t understood you,");
-			askAgain();
-		}
+		System.out.println("Action performed.");
+		askAction();
 	}
 	
     private static void parse(String res){
+    	boolean quit=false,reask=false;
     	String res1=res.trim();
     	if(res1.equalsIgnoreCase("1")){
     		UDPsender sender=new UDPsender();
@@ -45,7 +38,7 @@ public class Main {
     	}
     	else if(res.equalsIgnoreCase("3")){
     		try {
-				System.out.println(InetAddress.getLocalHost().toString());
+				System.out.println(InetAddress.getLocalHost().getHostAddress());
 			} catch (UnknownHostException e) {
 				System.err.println("Could´t get local IP address");
 				e.printStackTrace();
@@ -53,19 +46,23 @@ public class Main {
     	}
     	else if(res.equalsIgnoreCase("4")){
     		System.out.println("A: Select option 3) for getting your ipAddress");
-    		System.out.println("B: System asks to quit, choose no");
-    		System.out.println("C: Select option 2 and choose a local port from your"
-    				+ "computer to listen it.");
-    		System.out.println("D: System asks to quit again, choose no");
-    		System.out.println("E: Select option 3 and send the data you want, to your IP address"
-    				+ "which you got in B, and to the port you are listening to, chose on C");
-    		System.err.println("You sould be told some data incomed");
+    		System.out.println("B: Select option 2 and choose a local port from your"
+    				+ " computer to listen it.");
+    		System.out.println("C: System asks to quit again, choose no");
+    		System.out.println("D: Select option 3 and send the data you want, to your IP address"
+    				+ " which you got in A, and to the port you are listening to, chose on B");
+    		System.out.println("E: You sould be told some data incomed");
     	}
-    	else {
+    	else if(res.equalsIgnoreCase("5"))
+    		quit=true;
+    
+    	else{
     		System.out.println("Invalid option, try again");
+    		reask=true;
     		askAction();
     	}
-    	askAgain();
+    	if(!quit&&!reask)
+    		askAgain();
     }
 
 }
