@@ -18,12 +18,12 @@ public class UDPsender {
 			String ipString=teclado.nextLine();
 			try {
 					InetAddress	ipAddr = InetAddress.getByName(ipString);
-					System.out.println("What message you want to send?");
+					System.out.println("Wich port you want to send to?");
 					String port=teclado.nextLine();
 					int puerto= Integer.valueOf(port);
+					System.out.println("What message you want to send?");
 					String message=teclado.nextLine();
 					byte[] sendData=message.getBytes();
-					System.out.println("Wich port you want to send to?");
 					sendPacket=new DatagramPacket(sendData,sendData.length,ipAddr,puerto);
 			} catch (UnknownHostException e) {
 				System.err.println("Invalid IP address");

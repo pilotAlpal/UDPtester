@@ -1,5 +1,6 @@
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -9,12 +10,14 @@ public class Main {
 	}
 	
 	private static void askAction(){
+		
 		System.out.println("What you want to do?");
+		System.out.println("0)-Quit");
 		System.out.println("1)-Send udp");
 		System.out.println("2)-Listen udp");
 		System.out.println("3)-Print localIP");
 		System.out.println("4)-Usage example");
-		System.out.println("5)-Quit");
+		
 		String response=new Scanner(System.in).nextLine();
 		parse(response);
 	}
@@ -53,9 +56,8 @@ public class Main {
     				+ " which you got in A, and to the port you are listening to, chose on B");
     		System.out.println("E: You sould be told some data incomed");
     	}
-    	else if(res.equalsIgnoreCase("5"))
+    	else if(res.equalsIgnoreCase("0"))
     		quit=true;
-    
     	else{
     		System.out.println("Invalid option, try again");
     		reask=true;
