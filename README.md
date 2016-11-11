@@ -1,8 +1,8 @@
-## UDPtester
-#Description: 
+# UDPtester
+##Description: 
 Tests UDP
-#Functionalities: 
+##Functionalities: 
 Allows user to send and listen User Datagram Protocol messages and to listen and watch local ports for recieving UDP messages
-#Usage Windows: 
+##Usage Windows: 
 From cmd,java -jar udpTester.jar
 
